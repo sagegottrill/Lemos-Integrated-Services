@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import { X, FileText, Calendar, DollarSign, Building } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
+import { X, FileText } from 'lucide-react';
 
 interface AddContractModalProps {
   isOpen: boolean;
@@ -67,52 +62,59 @@ export const AddContractModal: React.FC<AddContractModalProps> = ({ isOpen, onCl
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="contractId">Contract ID</Label>
-              <Input
+              <label htmlFor="contractId" className="block text-sm font-medium text-gray-700 mb-2">Contract ID</label>
+              <input
                 id="contractId"
+                type="text"
                 value={formData.contractId}
                 onChange={(e) => setFormData({...formData, contractId: e.target.value})}
                 placeholder="CNT-2024-001"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="contractType">Contract Type</Label>
-              <Select value={formData.contractType} onValueChange={(value) => setFormData({...formData, contractType: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select contract type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="supply">Supply Agreement</SelectItem>
-                  <SelectItem value="service">Service Contract</SelectItem>
-                  <SelectItem value="distribution">Distribution</SelectItem>
-                  <SelectItem value="import-export">Import/Export</SelectItem>
-                  <SelectItem value="consultancy">Consultancy</SelectItem>
-                  <SelectItem value="maintenance">Maintenance</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="contractType" className="block text-sm font-medium text-gray-700 mb-2">Contract Type</label>
+              <select
+                id="contractType"
+                value={formData.contractType}
+                onChange={(e) => setFormData({...formData, contractType: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
+                required
+              >
+                <option value="">Select contract type</option>
+                <option value="supply">Supply Agreement</option>
+                <option value="service">Service Contract</option>
+                <option value="distribution">Distribution</option>
+                <option value="import-export">Import/Export</option>
+                <option value="consultancy">Consultancy</option>
+                <option value="maintenance">Maintenance</option>
+              </select>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="clientName">Client Name</Label>
-              <Input
+              <label htmlFor="clientName" className="block text-sm font-medium text-gray-700 mb-2">Client Name</label>
+              <input
                 id="clientName"
+                type="text"
                 value={formData.clientName}
                 onChange={(e) => setFormData({...formData, clientName: e.target.value})}
                 placeholder="Dangote Industries"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="clientEmail">Client Email</Label>
-              <Input
+              <label htmlFor="clientEmail" className="block text-sm font-medium text-gray-700 mb-2">Client Email</label>
+              <input
                 id="clientEmail"
                 type="email"
                 value={formData.clientEmail}
                 onChange={(e) => setFormData({...formData, clientEmail: e.target.value})}
                 placeholder="contact@dangote.com"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
@@ -120,94 +122,107 @@ export const AddContractModal: React.FC<AddContractModalProps> = ({ isOpen, onCl
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="value">Contract Value (₦)</Label>
-              <Input
+              <label htmlFor="value" className="block text-sm font-medium text-gray-700 mb-2">Contract Value (₦)</label>
+              <input
                 id="value"
                 type="number"
                 value={formData.value}
                 onChange={(e) => setFormData({...formData, value: e.target.value})}
                 placeholder="50000000"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="status">Status</Label>
-              <Select value={formData.status} onValueChange={(value) => setFormData({...formData, status: value})}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="draft">Draft</SelectItem>
-                  <SelectItem value="pending">Pending Review</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="expired">Expired</SelectItem>
-                  <SelectItem value="terminated">Terminated</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+              <select
+                id="status"
+                value={formData.status}
+                onChange={(e) => setFormData({...formData, status: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
+              >
+                <option value="draft">Draft</option>
+                <option value="pending">Pending Review</option>
+                <option value="active">Active</option>
+                <option value="expired">Expired</option>
+                <option value="terminated">Terminated</option>
+              </select>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <Label htmlFor="startDate">Start Date</Label>
-              <Input
+              <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+              <input
                 id="startDate"
                 type="date"
                 value={formData.startDate}
                 onChange={(e) => setFormData({...formData, startDate: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="endDate">End Date</Label>
-              <Input
+              <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+              <input
                 id="endDate"
                 type="date"
                 value={formData.endDate}
                 onChange={(e) => setFormData({...formData, endDate: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
             <div>
-              <Label htmlFor="renewalDate">Renewal Date</Label>
-              <Input
+              <label htmlFor="renewalDate" className="block text-sm font-medium text-gray-700 mb-2">Renewal Date</label>
+              <input
                 id="renewalDate"
                 type="date"
                 value={formData.renewalDate}
                 onChange={(e) => setFormData({...formData, renewalDate: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900"
               />
             </div>
           </div>
 
           <div>
-            <Label htmlFor="description">Description</Label>
-            <Textarea
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+            <textarea
               id="description"
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
               placeholder="Brief description of the contract..."
               rows={3}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900 resize-none"
             />
           </div>
 
           <div>
-            <Label htmlFor="terms">Terms & Conditions</Label>
-            <Textarea
+            <label htmlFor="terms" className="block text-sm font-medium text-gray-700 mb-2">Terms & Conditions</label>
+            <textarea
               id="terms"
               value={formData.terms}
               onChange={(e) => setFormData({...formData, terms: e.target.value})}
               placeholder="Key terms and conditions..."
               rows={4}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900 resize-none"
             />
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Button type="submit" className="flex-1 bg-gray-900 hover:bg-gray-800">
+            <button 
+              type="submit" 
+              className="flex-1 bg-emerald-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            >
               Create Contract
-            </Button>
-            <Button type="button" variant="outline" onClick={onClose} className="flex-1">
+            </button>
+            <button 
+              type="button" 
+              onClick={onClose} 
+              className="flex-1 bg-gray-200 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            >
               Cancel
-            </Button>
+            </button>
           </div>
         </form>
       </div>

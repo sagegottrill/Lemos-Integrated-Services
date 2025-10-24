@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import { X, BarChart3, Download, Calendar, Filter } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
+import { X, BarChart3, Download } from 'lucide-react';
 
 interface GenerateReportModalProps {
   isOpen: boolean;
@@ -68,73 +63,77 @@ export const GenerateReportModal: React.FC<GenerateReportModalProps> = ({ isOpen
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="reportType">Report Type</Label>
-              <Select value={formData.reportType} onValueChange={(value) => setFormData({...formData, reportType: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select report type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="financial">Financial Summary</SelectItem>
-                  <SelectItem value="shipments">Shipments Report</SelectItem>
-                  <SelectItem value="contracts">Contracts Analysis</SelectItem>
-                  <SelectItem value="supply">Supply Chain Report</SelectItem>
-                  <SelectItem value="consultancy">Consultancy Performance</SelectItem>
-                  <SelectItem value="comprehensive">Comprehensive Report</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="reportType" className="block text-sm font-medium text-gray-700 mb-2">Report Type</label>
+              <select
+                id="reportType"
+                value={formData.reportType}
+                onChange={(e) => setFormData({...formData, reportType: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
+                required
+              >
+                <option value="">Select report type</option>
+                <option value="financial">Financial Summary</option>
+                <option value="shipments">Shipments Report</option>
+                <option value="contracts">Contracts Analysis</option>
+                <option value="supply">Supply Chain Report</option>
+                <option value="consultancy">Consultancy Performance</option>
+                <option value="comprehensive">Comprehensive Report</option>
+              </select>
             </div>
             <div>
-              <Label htmlFor="format">Format</Label>
-              <Select value={formData.format} onValueChange={(value) => setFormData({...formData, format: value})}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="pdf">PDF</SelectItem>
-                  <SelectItem value="excel">Excel</SelectItem>
-                  <SelectItem value="csv">CSV</SelectItem>
-                  <SelectItem value="word">Word Document</SelectItem>
-                </SelectContent>
-              </Select>
+              <label htmlFor="format" className="block text-sm font-medium text-gray-700 mb-2">Format</label>
+              <select
+                id="format"
+                value={formData.format}
+                onChange={(e) => setFormData({...formData, format: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
+              >
+                <option value="pdf">PDF</option>
+                <option value="excel">Excel</option>
+                <option value="csv">CSV</option>
+                <option value="word">Word Document</option>
+              </select>
             </div>
           </div>
 
           <div>
-            <Label htmlFor="dateRange">Date Range</Label>
-            <Select value={formData.dateRange} onValueChange={(value) => setFormData({...formData, dateRange: value})}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="last7days">Last 7 Days</SelectItem>
-                <SelectItem value="last30days">Last 30 Days</SelectItem>
-                <SelectItem value="last3months">Last 3 Months</SelectItem>
-                <SelectItem value="last6months">Last 6 Months</SelectItem>
-                <SelectItem value="lastyear">Last Year</SelectItem>
-                <SelectItem value="custom">Custom Range</SelectItem>
-              </SelectContent>
-            </Select>
+            <label htmlFor="dateRange" className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
+            <select
+              id="dateRange"
+              value={formData.dateRange}
+              onChange={(e) => setFormData({...formData, dateRange: e.target.value})}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
+            >
+              <option value="last7days">Last 7 Days</option>
+              <option value="last30days">Last 30 Days</option>
+              <option value="last3months">Last 3 Months</option>
+              <option value="last6months">Last 6 Months</option>
+              <option value="lastyear">Last Year</option>
+              <option value="custom">Custom Range</option>
+            </select>
           </div>
 
           {formData.dateRange === 'custom' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="startDate">Start Date</Label>
-                <Input
+                <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                <input
                   id="startDate"
                   type="date"
                   value={formData.startDate}
                   onChange={(e) => setFormData({...formData, startDate: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
                   required
                 />
               </div>
               <div>
-                <Label htmlFor="endDate">End Date</Label>
-                <Input
+                <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                <input
                   id="endDate"
                   type="date"
                   value={formData.endDate}
                   onChange={(e) => setFormData({...formData, endDate: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
                   required
                 />
               </div>
@@ -142,56 +141,64 @@ export const GenerateReportModal: React.FC<GenerateReportModalProps> = ({ isOpen
           )}
 
           <div>
-            <Label className="text-base font-medium">Include in Report</Label>
-            <div className="mt-3 space-y-3">
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="includeCharts" 
+            <label className="block text-sm font-medium text-gray-700 mb-3">Include in Report</label>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  id="includeCharts"
                   checked={formData.includeCharts}
-                  onCheckedChange={(checked) => setFormData({...formData, includeCharts: checked as boolean})}
+                  onChange={(e) => setFormData({...formData, includeCharts: e.target.checked})}
+                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                 />
-                <Label htmlFor="includeCharts">Charts and Graphs</Label>
+                <label htmlFor="includeCharts" className="text-sm text-gray-700">Charts and Graphs</label>
               </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="includeSummary" 
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  id="includeSummary"
                   checked={formData.includeSummary}
-                  onCheckedChange={(checked) => setFormData({...formData, includeSummary: checked as boolean})}
+                  onChange={(e) => setFormData({...formData, includeSummary: e.target.checked})}
+                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                 />
-                <Label htmlFor="includeSummary">Executive Summary</Label>
+                <label htmlFor="includeSummary" className="text-sm text-gray-700">Executive Summary</label>
               </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="includeDetails" 
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  id="includeDetails"
                   checked={formData.includeDetails}
-                  onCheckedChange={(checked) => setFormData({...formData, includeDetails: checked as boolean})}
+                  onChange={(e) => setFormData({...formData, includeDetails: e.target.checked})}
+                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                 />
-                <Label htmlFor="includeDetails">Detailed Data Tables</Label>
+                <label htmlFor="includeDetails" className="text-sm text-gray-700">Detailed Data Tables</label>
               </div>
             </div>
           </div>
 
           <div>
-            <Label className="text-base font-medium">Departments</Label>
-            <div className="mt-3 grid grid-cols-2 gap-3">
+            <label className="block text-sm font-medium text-gray-700 mb-3">Departments</label>
+            <div className="grid grid-cols-2 gap-3">
               {['Import/Export', 'Contracts', 'Consultancy', 'Supply', 'Finance', 'Operations'].map((dept) => (
-                <div key={dept} className="flex items-center space-x-2">
-                  <Checkbox 
+                <div key={dept} className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
                     id={dept}
                     checked={formData.departments.includes(dept)}
-                    onCheckedChange={(checked) => handleDepartmentChange(dept, checked as boolean)}
+                    onChange={(e) => handleDepartmentChange(dept, e.target.checked)}
+                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                   />
-                  <Label htmlFor={dept}>{dept}</Label>
+                  <label htmlFor={dept} className="text-sm text-gray-700">{dept}</label>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Button 
+            <button 
               type="submit" 
-              className="flex-1 bg-gray-900 hover:bg-gray-800"
               disabled={isGenerating}
+              className="flex-1 bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isGenerating ? (
                 <>
@@ -204,10 +211,14 @@ export const GenerateReportModal: React.FC<GenerateReportModalProps> = ({ isOpen
                   Generate Report
                 </>
               )}
-            </Button>
-            <Button type="button" variant="outline" onClick={onClose} className="flex-1">
+            </button>
+            <button 
+              type="button" 
+              onClick={onClose} 
+              className="flex-1 bg-gray-200 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            >
               Cancel
-            </Button>
+            </button>
           </div>
         </form>
       </div>

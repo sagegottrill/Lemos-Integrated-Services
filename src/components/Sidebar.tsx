@@ -22,13 +22,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentPage, onNavigate, isCol
     <aside className={`bg-white h-screen fixed left-0 top-0 transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'} z-40 border-r border-gray-100`}>
       <div className="p-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">L</span>
+          <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-lg">LIS</span>
           </div>
           {!isCollapsed && (
             <div>
               <h1 className="text-xl font-bold text-gray-900">Lemos</h1>
               <p className="text-xs text-gray-600 -mt-1">Integrated Services</p>
+              <p className="text-xs text-gray-500 -mt-1">BN 3160134</p>
             </div>
           )}
         </div>

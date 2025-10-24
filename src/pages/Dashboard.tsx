@@ -5,7 +5,7 @@ import { LineChart } from '../components/LineChart';
 import { NewShipmentModal } from '../components/modals/NewShipmentModal';
 import { AddContractModal } from '../components/modals/AddContractModal';
 import { GenerateReportModal } from '../components/modals/GenerateReportModal';
-import { DollarSign, TrendingUp, Ship, FileText, Users, Package, CheckCircle, Percent } from 'lucide-react';
+import { DollarSign, TrendingUp, Ship, FileText } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
   const [isNewShipmentOpen, setIsNewShipmentOpen] = useState(false);
@@ -36,7 +36,7 @@ export const Dashboard: React.FC = () => {
         <div className="lg:col-span-2">
           <div className="bg-gradient-to-br from-orange-100 to-yellow-100 rounded-3xl p-8 h-80 relative overflow-hidden">
             <div className="relative z-10">
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">Your Business Results for Today</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">Lemos Integrated Services - Annual Performance</h2>
               <LineChart data={revenueData} title="" />
             </div>
             {/* Decorative circles */}
@@ -122,8 +122,8 @@ export const Dashboard: React.FC = () => {
         {/* Quick Actions */}
         <div className="bg-white rounded-3xl p-6 border border-gray-100">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">My Business Activities</h3>
-            <button className="bg-gray-900 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">+</button>
+            <h3 className="text-lg font-semibold text-gray-900">Core Business Operations</h3>
+            <button className="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm hover:bg-red-700 transition-colors">+</button>
           </div>
           
           <div className="space-y-4">
@@ -142,6 +142,7 @@ export const Dashboard: React.FC = () => {
               label="Generate Report" 
               icon={<TrendingUp size={20} />} 
               onClick={() => setIsGenerateReportOpen(true)} 
+              variant="tertiary"
             />
           </div>
         </div>
