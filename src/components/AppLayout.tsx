@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { TopNav } from './TopNav';
+import { Footer } from './Footer';
 import { Dashboard } from '../pages/Dashboard';
 import { ImportExport } from '../pages/ImportExport';
 import { Contracts } from '../pages/Contracts';
@@ -28,22 +29,23 @@ export const AppLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 flex flex-col">
       <Sidebar 
         currentPage={currentPage} 
         onNavigate={setCurrentPage}
         isCollapsed={isSidebarCollapsed}
       />
-      <div className={`transition-all duration-300 ${isSidebarCollapsed ? 'ml-20' : 'ml-64'}`}>
+      <div className={`transition-all duration-300 ${isSidebarCollapsed ? 'ml-20' : 'ml-64'} flex flex-col min-h-screen`}>
         <TopNav 
           onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
           isSidebarCollapsed={isSidebarCollapsed}
         />
-        <main className="p-8">
-          <div className="bg-white rounded-3xl p-8 shadow-sm min-h-[calc(100vh-8rem)]">
+        <main className="p-8 flex-1">
+          <div className="bg-white rounded-3xl p-8 shadow-sm min-h-[calc(100vh-12rem)]">
             {renderPage()}
           </div>
         </main>
+        <Footer />
       </div>
     </div>
   );
